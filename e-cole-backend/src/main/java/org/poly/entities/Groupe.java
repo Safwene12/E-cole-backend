@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,18 +21,18 @@ public class Groupe implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id ;
 	private String nomGroupe ;
-	@Column(length = 500) @Nullable
-	private String commentaires ;
-	@OneToMany(mappedBy = "groupe")
-	private List<AffectaionEtudGroupe> affectationsEtudiants ;
 	
-	@OneToMany(mappedBy = "groupe")
+	private String anneeScollaire ;
+	@OneToMany(mappedBy = "groupe") @JsonIgnore
+	private List<Etudiant> etudiants ;
+	
+	@OneToMany(mappedBy = "groupe") @JsonIgnore
 	private List<AffectationEnseigMatiere> affectationsEnseignants;
 	
 	@ManyToOne
 	private Section section ;
 	
-	@OneToMany(mappedBy = "groupe")
+	@OneToMany(mappedBy = "groupe") @JsonIgnore
 	private List<EmploisDuTemps> emploisdutemps;
 	
 	

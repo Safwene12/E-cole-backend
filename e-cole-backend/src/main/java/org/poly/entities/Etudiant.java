@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -24,15 +25,15 @@ public class Etudiant extends User implements Serializable  {
 	private String dateDeNaissance ;
 	private String lieuDeNaissance ;
 	private String adresseActuelle ;
-	private String AdresseOrigine ;
+	private String adresseOrigine ;
 	private String email ;
 	private String sexe ;
 	private Long cin; 
 	private String photo ;
 	private String numTel ; 
 	
-	@OneToMany(mappedBy = "etudiant")
-	private List<AffectaionEtudGroupe> affectations;
+	@ManyToOne
+	private Groupe groupe;
 	@OneToMany(mappedBy = "etudiant") 
     private List<Note> note; 
 	@OneToMany(mappedBy = "etudiant") 

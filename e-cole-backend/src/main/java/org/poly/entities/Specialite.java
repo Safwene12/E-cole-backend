@@ -9,6 +9,8 @@ import javax.persistence.Id;
 
 import org.springframework.lang.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +25,10 @@ public class Specialite implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id ;
 	private String nomSpecialite ;
-
-
 	@Column(length = 500) @Nullable
 	private String commentaires ;
 	@OneToMany(mappedBy = "specialite")
+	@JsonIgnore
 	private List<Section> sections;
 
 }

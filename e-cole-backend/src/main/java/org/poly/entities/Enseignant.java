@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +32,7 @@ public class Enseignant extends User implements Serializable {
 	private Long cin; 
 	private String photo ;
 	private String numTel ; 
-	@OneToMany(mappedBy = "enseignant")
+	@OneToMany(mappedBy = "enseignant") @JsonIgnore
 	private List<AffectationEnseigMatiere> affectations;
 	@OneToMany(mappedBy = "enseignant")
 	private List<EmploisDuTemps> emploisdutemps;
