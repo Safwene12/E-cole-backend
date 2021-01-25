@@ -8,8 +8,10 @@ public class JwtResponse {
     private String username;
     private List<String> authorities;
     private String type = "Bearer";
+    private String nom ;
+    private String prenom;
 
-    public JwtResponse(String accessToken,Long id , String username, List<String> role) {
+    public JwtResponse(String accessToken,Long id , String username, List<String> role ) {
         this.id = id;
     	this.token = accessToken;
         this.username=username;
@@ -17,7 +19,23 @@ public class JwtResponse {
         
     }
 
-    public String getUsername() {
+    public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getUsername() {
         return username;
     }
     public Long getId() {

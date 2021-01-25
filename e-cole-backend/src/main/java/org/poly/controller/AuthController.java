@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import communication.UserResponse;
+
 
 
 
@@ -67,11 +69,18 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
+		/**UserResponse user = new UserResponse();
+		user.setUser(userRepository.getOne(userDetails.getId()));
+		user.setAccessToken(jwt);
+		
+		user.setRole(roles.get(0));
+**/
 		return ResponseEntity.ok(new JwtResponse(jwt, 
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
 												 roles));
+		
+		
 	}
 
 	    @PostMapping("/signup")

@@ -38,5 +38,16 @@ public class EtudiantController {
     public int nbreEtud() {
     	return etudiantRepository.nbreEtudiant();
     }
+    @RequestMapping(value = "/etudiant/{idEtud}",method = RequestMethod.PUT)
+    public void updateEtudiant(@RequestBody Etudiant etudiant , @PathVariable("idEtud") Long idEtud)
+    {
+    	etudiantService.updateEtudiant(etudiant, idEtud);
+    }
+    @RequestMapping(value = "/classmates/{id}",method = RequestMethod.GET)
+    public List<Etudiant> getClassmates (@PathVariable("id") Long id)
+    {
+    	return etudiantRepository.getClassmates(id);
+    			
+    }
 
 }
