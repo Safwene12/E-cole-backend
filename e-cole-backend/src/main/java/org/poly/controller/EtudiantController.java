@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import communication.EtudiantCharts;
 @CrossOrigin(origins = "*", maxAge = 3600)
 
 @RestController
@@ -47,6 +49,12 @@ public class EtudiantController {
     public List<Etudiant> getClassmates (@PathVariable("id") Long id)
     {
     	return etudiantRepository.getClassmates(id);
+    			
+    }
+    @RequestMapping(value = "/etudiantChart",method = RequestMethod.GET)
+    public List<EtudiantCharts> getCharts ()
+    {
+    	return etudiantService.getchart();
     			
     }
 
