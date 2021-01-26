@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.poly.entities.User;
+import org.poly.repository.RoleRepository;
 import org.poly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -21,6 +22,8 @@ public class UserController {
 	
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	RoleRepository roleRepo; ;
 	
 	@RequestMapping("/user/{id}")
 	public User getUserById(@PathVariable Long id)
@@ -35,6 +38,11 @@ public class UserController {
 		List<User> users = userRepository.findAll();
 		
 		return users;
+	}
+	@RequestMapping("/roleByUser/{idUser}")
+	public String getRoleByIdUser(@PathVariable("idUser") Long idUser)
+	{
+		return (roleRepo.findNameById(userRepository.getRoleByIdUser(idUser))).toString() ;
 	}
 
 }

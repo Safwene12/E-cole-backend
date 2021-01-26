@@ -41,7 +41,7 @@ private String password;
 @JoinTable(	name = "user_roles", 
 			joinColumns = @JoinColumn(name = "user_id"), 
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
-@JsonIgnore
+
 private Set<Role> roles = new HashSet<>();
 @OneToMany(mappedBy = "userEnv")
 @JsonIgnore
@@ -50,6 +50,12 @@ private List<Message> inbox ;
 @OneToMany(mappedBy = "userDest")
 @JsonIgnore
 private List<Message> sent;
+@OneToMany(mappedBy = "userCom")
+@JsonIgnore
+private List<Commentaire> comments;
+@OneToMany(mappedBy = "userPo")
+@JsonIgnore
+private List<Posts> posts;
 public User(String username, String password) {
 	super();
 	this.username = username;
